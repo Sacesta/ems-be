@@ -10,6 +10,19 @@ class ProjectController {
     }
 
     /**
+     * Get All Projects
+     */
+    async getAll(){
+        try{
+            const projects = await this.db.projects.find()
+            return {projects}
+        }catch(err){
+            console.log(err)
+            return {error: "Get all Projects: Internal Server Error"}
+        }
+    }
+
+    /**
      * Create Project
      */
     async create(title,description) {

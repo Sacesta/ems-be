@@ -2,6 +2,12 @@ const router = require("express").Router();
 const Project = require('../controllers/project.controller')
 const auth = require('../middleware/auth')
 
+//Get all projects
+router.post('/getAll',auth(['admin','sadmin']), async(req,res)=>{
+    const response = await Project.getAll()
+    res.json(response)
+})
+
 // create Project
 router.post('/create', auth(['admin','sadmin']), async(req,res)=>{
     const response = await Project.create(req.body.title,req.body.description)
